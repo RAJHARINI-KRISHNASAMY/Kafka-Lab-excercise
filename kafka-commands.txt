@@ -1,0 +1,10 @@
+--Creating kafka topic 
+bin/kafka-topics --create --zookeeper localhost:2181 --partitions 1 --replication-factor 3 --topic BigData-console-topic
+bin/kafka-topics --describe --zookeeper localhost:2181 --topic BigData-console-topic
+-- Creating producers for the topic
+bin/kafka-console-producer --broker-list localhost:9092 --topic BigData-console-topic
+--Creating consumer for the topic
+bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic BigData-console-topic
+--Creating consumer group and adding two consumers to the group
+bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic BigData-console-topic --from-beginning --consumer-property group.id=console-consumer-group
+bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic BigData-console-topic --from-beginning --consumer-property group.id=console-consumer-group
